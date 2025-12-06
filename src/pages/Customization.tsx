@@ -23,7 +23,7 @@ export default function Customization() {
     width: 65,
     arcCurvature: 70,
     thumbDepth: 50,
-    material: 'PA12',
+    material: 'ABS',
     buttonCount: 5,
     clickPressure: 'standard',
     primaryColor: '#00FF5A',
@@ -35,15 +35,33 @@ export default function Customization() {
     weeklyReport: false,
   });
 
-  const basePrice = 189000;
+  const basePrice = 89000;
+
+  // 버튼 개수에 따른 추가 금액 계산
+  const getButtonExtra = () => {
+    switch (config.buttonCount) {
+      case 5:
+        return 20000;
+      case 7:
+        return 40000;
+      case 9:
+        return 60000;
+      case 3:
+      default:
+        return 0;
+    }
+  };
+
+  // ✅ 버튼 개수 + 각인 유무로만 가격 계산
   const calculatePrice = () => {
     let price = basePrice;
-    if (config.material === 'TPU') price += 30000;
-    if (config.material === 'PA12') price += 50000;
-    if (config.buttonCount > 5) price += 20000;
+
+    // 버튼 개수 추가금
+    price += getButtonExtra();
+
+    // 각인 추가금
     if (config.engraving) price += 15000;
-    if (config.aiSensitivity) price += 25000;
-    if (config.gripAssist) price += 20000;
+
     return price;
   };
 
@@ -57,9 +75,10 @@ export default function Customization() {
 
   const materials = [
     { id: 'ABS', name: 'ABS 플라스틱', price: 0, description: '가벼운 기본 재질' },
-    { id: 'PC+ABS', name: 'PC+ABS', price: 0, description: '내구성 강화' },
-    { id: 'TPU', name: 'TPU Grip', price: 30000, description: '부드러운 그립감' },
-    { id: 'PA12', name: 'PA12 3D Shell', price: 50000, description: '프리미엄 3D 프린팅' },
+    { id: 'PLA', name: 'PLA 플라스틱', price: 5000, description: '친환경 · 변형 적음' },
+    { id: 'WOD', name: '목재 필라멘트', price: 30000, description: '목재 질감 · 따뜻한 그립감' },
+    { id: 'Met', name: '메탈', price: 70000, description: '알루미늄 기반 · 묵직한 무게감' },
+    { id: 'CER', name: '세라믹', price: 90000, description: '부드러운 촉감 · 열에 강함' },
   ];
 
   const textures = [
@@ -220,30 +239,51 @@ export default function Customization() {
                 >
                   <h3 className="text-white mb-6">재질 선택</h3>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    {materials.map((material) => (
-                      <button
-                        key={material.id}
-                        onClick={() => setConfig({ ...config, material: material.id })}
-                        className={`glass rounded-xl p-6 text-left transition-all ${
-                          config.material === material.id
-                            ? 'border-2 border-[#00FF5A] bg-[#00FF5A]/5'
-                            : 'border border-white/10 hover:border-white/30'
-                        }`}
-                      >
-                        <div className="flex justify-between items-start mb-3">
-                          <h4 className="text-white">{material.name}</h4>
-                          {material.price > 0 && (
-                            <span className="text-xs px-2 py-1 bg-[#4FF3FF]/20 text-[#4FF3FF] rounded">
-                              +{(material.price / 1000).toFixed(0)}K
+                    {materials.map((material) => {
+                      const isSelected = config.material === material.id;
+
+                      return (
+                        <button
+                          key={material.id}
+                          type="button"
+                          onClick={() =>
+                            setConfig((prev) => ({
+                              ...prev,
+                              material: material.id,
+                            }))
+                          }
+                          className={
+                            isSelected
+                              ? // ✅ 선택된 상태: glass 안 쓰고 Tailwind로만 스타일링
+                                'rounded-xl p-6 text-left transition-all cursor-pointer border-2 border-[#00FF5A] bg-[#00FF5A]/10 shadow-lg shadow-[#00FF5A]/30'
+                              : // ✅ 비선택 상태: 기존처럼 glass 유지
+                                'glass rounded-xl p-6 text-left transition-all cursor-pointer border border-white/10 hover:border-white/30'
+                          }
+                        >
+                          <div className="flex justify-between items-start mb-3">
+                            <h4 className="text-white">{material.name}</h4>
+                            <span className="text-xs text-emerald-400">
+                              {material.price === 0 ? '기본' : `+₩${material.price.toLocaleString()}`}
                             </span>
-                          )}
-                        </div>
-                        <p className="text-sm text-gray-400">{material.description}</p>
-                      </button>
-                    ))}
+                          </div>
+                          <p className="text-sm text-gray-400">{material.description}</p>
+                        </button>
+                      );
+                    })}
+                  </div>
+
+                  {/* 디버깅용 - 잘 되면 삭제해도 됨 */}
+                  <div className="mt-4 text-sm text-gray-400">
+                    현재 선택된 재질:&nbsp;
+                    <span className="text-white font-medium">
+                      {materials.find((m) => m.id === config.material)?.name ?? '-'}
+                    </span>
                   </div>
                 </motion.div>
               )}
+
+
+
 
               {/* Buttons */}
               {activeSection === 'buttons' && (
@@ -257,19 +297,30 @@ export default function Customization() {
                   <div className="mb-6">
                     <label className="text-gray-300 mb-3 block">버튼 개수</label>
                     <div className="grid grid-cols-4 gap-3">
-                      {[3, 5, 7, 9].map((count) => (
-                        <button
-                          key={count}
-                          onClick={() => setConfig({ ...config, buttonCount: count })}
-                          className={`py-3 rounded-lg transition-all ${
-                            config.buttonCount === count
-                              ? 'bg-[#00FF5A] text-[#0D0F12]'
-                              : 'glass border border-white/10 text-gray-300 hover:border-white/30'
-                          }`}
-                        >
-                          {count}
-                        </button>
-                      ))}
+                      {[3, 5, 7, 9].map((count) => {
+                        const extra =
+                          count === 3 ? 0 :
+                          count === 5 ? 20000 :
+                          count === 7 ? 40000 :
+                          60000;
+
+                        return (
+                          <button
+                            key={count}
+                            onClick={() => setConfig({ ...config, buttonCount: count })}
+                            className={`py-3 rounded-lg transition-all ${
+                              config.buttonCount === count
+                                ? 'bg-[#00FF5A] text-[#0D0F12]'
+                                : 'glass border border-white/10 text-gray-300 hover:border-white/30'
+                            }`}
+                          >
+                            <div>{count}개</div>
+                            <div className="text-xs text-gray-800/70">
+                              {extra === 0 ? '+0원' : `+${extra.toLocaleString()}원`}
+                            </div>
+                          </button>
+                        );
+                      })}
                     </div>
                   </div>
 
@@ -478,16 +529,10 @@ export default function Customization() {
                     <span>기본 가격</span>
                     <span>₩{basePrice.toLocaleString()}</span>
                   </div>
-                  {config.material === 'TPU' && (
+                  {getButtonExtra() > 0 && (
                     <div className="flex justify-between text-gray-400">
-                      <span>TPU Grip</span>
-                      <span>+₩30,000</span>
-                    </div>
-                  )}
-                  {config.material === 'PA12' && (
-                    <div className="flex justify-between text-gray-400">
-                      <span>PA12 Shell</span>
-                      <span>+₩50,000</span>
+                      <span>버튼 추가</span>
+                      <span>+₩{getButtonExtra().toLocaleString()}</span>
                     </div>
                   )}
                   {config.engraving && (

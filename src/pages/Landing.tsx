@@ -122,7 +122,7 @@ export default function Landing() {
                   <span className="block text-[var(--ux-green)]">RZ·Inspired Series</span>
                 </h1>
                 <p className="mt-4 text-lg text-gray-300">
-                  Razer 감성의 네온 블랙 무드에 AI 핏 엔진을 결합했습니다. 팀 환경, e스포츠,
+                  네온 블랙 무드에 AI 핏 엔진을 결합했습니다. 팀 환경, e스포츠,
                   크리에이터까지 한 번의 손 스캔으로 전담 디렉터가 맞춤 제작합니다.
                 </p>
               </div>
@@ -147,7 +147,7 @@ export default function Landing() {
                   to="/customize"
                   className="ux-btn-secondary text-sm uppercase tracking-[0.3em]"
                 >
-                  컬렉션 보기
+                  스캔 없이 제작
                 </Link>
               </div>
 
