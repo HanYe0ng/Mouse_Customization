@@ -42,7 +42,7 @@ export default function Checkout() {
     primaryColor: '#00FF5A',
     secondaryColor: '#0D0F12',
     texture: 'matte',
-    engraving: '', // ← 여기!
+    engraving: '',
     aiSensitivity: true,
     gripAssist: true,
     weeklyReport: false,
@@ -75,7 +75,7 @@ export default function Checkout() {
       ? '단단함'
       : config.clickPressure;
 
-  // 가격 로직 (Customization과 동일하게)
+  // 가격 로직 (Customization과 동일)
   const basePrice = 89000;
 
   const getButtonExtra = (buttonCount: number) => {
@@ -93,9 +93,9 @@ export default function Checkout() {
   };
 
   const buttonExtra = getButtonExtra(config.buttonCount);
-  const engravingExtra = config.engraving ? 15000 : 0; // ✅ engraving이 비어있으면 0
+  const engravingExtra = config.engraving ? 15000 : 0;
 
-  // Customization에서 넘겨준 totalPrice가 있으면 그 값을 신뢰
+  // ✅ Customization에서 넘겨준 totalPrice가 있으면 그 값을 신뢰
   const totalPrice =
     state?.totalPrice ?? basePrice + buttonExtra + engravingExtra;
 
