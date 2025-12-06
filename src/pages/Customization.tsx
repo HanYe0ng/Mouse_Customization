@@ -262,9 +262,6 @@ export default function Customization() {
                         >
                           <div className="flex justify-between items-start mb-3">
                             <h4 className="text-white">{material.name}</h4>
-                            <span className="text-xs text-emerald-400">
-                              {material.price === 0 ? '기본' : `+₩${material.price.toLocaleString()}`}
-                            </span>
                           </div>
                           <p className="text-sm text-gray-400">{material.description}</p>
                         </button>
