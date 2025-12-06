@@ -540,7 +540,14 @@ export default function Customization() {
                   )}
                 </div>
                 <button
-                  onClick={() => navigate('/checkout')}
+                  onClick={() =>
+                    navigate('/checkout', {
+                      state: {
+                        config,                    // ✅ 사용자가 커스터마이징한 설정
+                        totalPrice: calculatePrice(), // ✅ 오른쪽 패널에 보이는 예상 가격 그대로
+                      },
+                    })
+                  }
                   className="w-full py-4 bg-[#00FF5A] text-[#0D0F12] rounded-xl hover:bg-[#4FF3FF] transition-all glow-green flex items-center justify-center gap-2"
                 >
                   <span>주문하기</span>
