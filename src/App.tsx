@@ -6,6 +6,7 @@ import AnalysisResult from './pages/AnalysisResult';
 import ShellRecommendation from './pages/ShellRecommendation';
 import Customization from './pages/Customization';
 import Checkout from './pages/Checkout';
+import WeeklyReport from './pages/WeeklyReport';
 import Navigation from './components/Navigation';
 import Footer from './components/Footer';
 
@@ -21,6 +22,7 @@ export default function App() {
           <Route path="/recommendation" element={<ShellRecommendation />} />
           <Route path="/customize" element={<Customization />} />
           <Route path="/checkout" element={<Checkout />} />
+          <Route path="/weekly-report" element={<WeeklyReport />} />
         </Routes>
         <Footer />
       </div>

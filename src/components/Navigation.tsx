@@ -9,6 +9,7 @@ const mainLinks = [
   { path: "/analysis", label: "AI 분석" },
   { path: "/customize", label: "커스터마이징" },
   { path: "/recommendation", label: "쉘 추천" },
+  { path: "/weekly-report", label: "주간 리포트" },
 ];
 
 const supportLinks = [

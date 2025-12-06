@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>콤마 AI 주간 사용 습관 리포트</title>
+    <style>
+      :root {
+        color-scheme: dark;
+        --bg: #050608;
+        --card: rgba(15, 17, 22, 0.85);
+        --border: rgba(255, 255, 255, 0.08);
+        --accent: #00ff5a;
+        --accent-2: #4ff3ff;
+        --text: #f5f5f5;
+        --muted: #a1a1aa;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        min-height: 100vh;
+        font-family: 'Pretendard', 'Segoe UI', system-ui, -apple-system, sans-serif;
+        background: radial-gradient(circle at top, rgba(0, 255, 90, 0.1), transparent 45%),
+          var(--bg);
+        color: var(--text);
+      }
+      main {
+        max-width: 960px;
+        margin: 0 auto;
+        padding: 64px 20px 96px;
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+      }
+      h1 {
+        margin: 0 0 8px;
+        font-size: clamp(2.5rem, 5vw, 3.5rem);
+      }
+      h2 {
+        margin: 0 0 16px;
+        font-size: 1.5rem;
+      }
+      h3 {
+        margin: 0 0 12px;
+        font-size: 1.1rem;
+      }
+      p {
+        margin: 0;
+        line-height: 1.5;
+      }
+      .hero {
+        text-align: center;
+        padding: 32px 20px 16px;
+      }
+      .hero span {
+        display: inline-flex;
+        font-size: 0.7rem;
+        letter-spacing: 0.35em;
+        text-transform: uppercase;
+        color: var(--accent-2);
+        margin-bottom: 12px;
+      }
+      .card {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 24px;
+        padding: 28px;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+      .grid {
+        display: grid;
+        gap: 24px;
+      }
+      .grid-2 {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      }
+      .stats {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        gap: 16px;
+      }
+      .stat {
+        background: rgba(255, 255, 255, 0.03);
+        border-radius: 18px;
+        padding: 16px;
+      }
+      .stat span {
+        font-size: 0.8rem;
+        color: var(--muted);
+      }
+      .stat strong {
+        display: block;
+        margin-top: 6px;
+        font-size: 1.5rem;
+      }
+      ul {
+        margin: 0;
+        padding-left: 20px;
+        color: var(--muted);
+      }
+      li + li {
+        margin-top: 6px;
+      }
+      .highlight {
+        background: rgba(0, 255, 90, 0.08);
+        border: 1px solid rgba(0, 255, 90, 0.3);
+        border-radius: 18px;
+        padding: 16px 18px;
+        color: #e3fce2;
+        font-size: 0.95rem;
+        line-height: 1.5;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        border-radius: 18px;
+        overflow: hidden;
+        font-size: 0.95rem;
+      }
+      thead {
+        background: rgba(255, 255, 255, 0.05);
+        color: var(--muted);
+        text-transform: uppercase;
+        font-size: 0.75rem;
+        letter-spacing: 0.2em;
+      }
+      th,
+      td {
+        padding: 12px 16px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        text-align: left;
+      }
+      tbody tr:last-child td {
+        border-bottom: none;
+      }
+      .pill {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 999px;
+        padding: 6px 12px;
+        background: rgba(255, 255, 255, 0.08);
+        font-size: 0.8rem;
+      }
+      .quote {
+        font-size: 1.1rem;
+        color: #f4f4f5;
+        line-height: 1.8;
+      }
+      .quick-card {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+        gap: 12px;
+      }
+      .quick-card div {
+        background: rgba(0, 0, 0, 0.35);
+        border-radius: 16px;
+        padding: 12px;
+      }
+      .quick-card span {
+        font-size: 0.75rem;
+        color: var(--muted);
+      }
+      .quick-card strong {
+        display: block;
+        margin-top: 4px;
+        font-size: 1.2rem;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <header class="hero">
+        <span>콤마 AI 리포트</span>
+        <h1>AI 기반 주간 사용 습관 리포트</h1>
+        <p>당신의 작업 방식에 맞춰 스스로 최적화되는 AI 마우스 코치</p>
+      </header>
+
+      <section class="card">
+        <h2>이번 주 사용 요약</h2>
+        <div class="stats">
+          <div class="stat">
+            <span>총 사용 시간</span>
+            <strong>27시간 12분</strong>
+          </div>
+          <div class="stat">
+            <span>일 평균 사용</span>
+            <strong>3시간 53분</strong>
+          </div>
+          <div class="stat">
+            <span>지난주 대비</span>
+            <strong>+12%</strong>
+          </div>
+        </div>
+        <div class="highlight">
+          • 이번 주에는 작업량 증가로 인해 손목 피로 누적이 빠르게 진행됨.<br />
+          • “짧고 잦은 휴식” 패턴이 부족해 교정이 필요해요.
+        </div>
+      </section>
+
+      <section class="grid grid-2">
+        <div class="card">
+          <h2>그립 · 움직임 패턴</h2>
+          <div class="stats">
+            <div class="stat">
+              <span>팜 그립</span>
+              <strong>68%</strong>
+            </div>
+            <div class="stat">
+              <span>클로 그립</span>
+              <strong>22%</strong>
+            </div>
+            <div class="stat">
+              <span>핑거 그립</span>
+              <strong>10%</strong>
+            </div>
+          </div>
+          <ul>
+            <li>팜 그립 시간이 길어지며 손바닥 압력 증가</li>
+            <li>완화 구간에서는 AI 자동감도 모드를 유지하세요.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h2>이동 경로 · 정밀 작업</h2>
+          <div class="stats">
+            <div class="stat">
+              <span>좌측 상단 이동</span>
+              <strong>23%</strong>
+            </div>
+            <div class="stat">
+              <span>우측 중단</span>
+              <strong>18%</strong>
+            </div>
+            <div class="stat">
+              <span>반복 이동 루프</span>
+              <strong>3개</strong>
+            </div>
+          </div>
+          <p class="pill">세밀 조작 비율 7.4%</p>
+          <p>세밀 조작이 늘어 손가락 굴곡 부하 증가 리스크가 관찰되었습니다.</p>
+        </div>
+      </section>
+
+      <section class="grid grid-2">
+        <div class="card">
+          <h2>클릭 습관 분석</h2>
+          <div class="stats">
+            <div class="stat"><span>총 클릭 수</span><strong>41,822회</strong></div>
+            <div class="stat"><span>좌클릭</span><strong>78%</strong></div>
+            <div class="stat"><span>우클릭</span><strong>11%</strong></div>
+            <div class="stat"><span>매크로 버튼</span><strong>11%</strong></div>
+          </div>
+          <div class="highlight">
+            평균 클릭 압력 127g (권장치 110g 대비 +17g)<br />
+            과압 클릭이 하루 평균 413회 발생 → 굴곡근 피로 누적 위험<br />
+            → 클릭 압력 보정 기능 활성화 시 약 18% 완화 예상
+          </div>
+        </div>
+        <div class="card">
+          <h2>사용 중단 & 휴식 패턴</h2>
+          <div class="stats">
+            <div class="stat"><span>최대 연속 사용</span><strong>2시간 41분</strong></div>
+            <div class="stat"><span>평균 연속 사용</span><strong>54분</strong></div>
+            <div class="stat"><span>휴식 실행률</span><strong>32%</strong></div>
+          </div>
+          <p>
+            휴식 패턴이 불규칙하며 알림 반응률이 지난주 대비 8% 감소했습니다. “작업-휴식 비율” 재조정이 필요합니다.
+          </p>
+        </div>
+      </section>
+
+      <section class="grid grid-2">
+        <div class="card">
+          <h2>통증 위험 스코어</h2>
+          <p class="pill">이번 주 지표: 68 / 100 (지난주 대비 +6)</p>
+          <h3>위험 상승 요인</h3>
+          <ul>
+            <li>과압 클릭 증가</li>
+            <li>연속 사용 시간 증가</li>
+            <li>손바닥 압력 상승</li>
+            <li>짧은 휴식 구간 부족</li>
+          </ul>
+          <h3>AI가 포착한 신체 부담 신호</h3>
+          <ul>
+            <li>손목 외반 경향 증가</li>
+            <li>손바닥 하중 좌측 편향</li>
+            <li>손가락 굴곡 속도 증가 → 긴장도 상승 패턴</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h2>다음 주 맞춤 개선 목표</h2>
+          <ul>
+            <li>연속 사용 45분 제한 → 자동 알림 강도 +10%</li>
+            <li>클릭 압력 보정 활성화 → 목표 평균 압력 110g</li>
+            <li>손목 중립 자세 유지 프로그램 ON → 센서 기반 각도 보정</li>
+            <li>반복 이동 루프 개선 → AI 커서 가속 자동 최적화</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="grid grid-2">
+        <div class="card">
+          <h2>AI 추천 설정 변경</h2>
+          <table>
+            <thead>
+              <tr>
+                <th>항목</th>
+                <th>현재</th>
+                <th>추천</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>자동 감도 튜닝</td>
+                <td>OFF</td>
+                <td>ON</td>
+              </tr>
+              <tr>
+                <td>클릭 압력 보정</td>
+                <td>120g</td>
+                <td>110g</td>
+              </tr>
+              <tr>
+                <td>매크로 추천</td>
+                <td>1개 등록</td>
+                <td>3개 등록 추천</td>
+              </tr>
+              <tr>
+                <td>휴식 알림</td>
+                <td>기본</td>
+                <td>집중 작업 모드</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="card">
+          <h2>히트맵 · 패턴 시각화</h2>
+          <ul>
+            <li>손 압력 히트맵: 손바닥 중앙–좌측 65% 집중</li>
+            <li>커서 이동 히트맵: 좌측 상단 + 우측 중단 사용 증가</li>
+            <li>클릭 강도 그래프: 오전 10시~12시 피크</li>
+            <li>연속 사용 시간 그래프: 금요일 2.4h 피크</li>
+          </ul>
+          <p>웹에서는 실제 애니메이션/그래프로 제공됩니다.</p>
+        </div>
+      </section>
+
+      <section class="grid grid-2">
+        <div class="card">
+          <h2>콤마 AI 총평</h2>
+          <p class="quote">
+            “이번 주는 작업량 증가로 인해 피로 신호가 뚜렷하게 나타났습니다. 다음 주는 ‘부하 감소 주간’으로 설정하는 것을 권장합니다. 콤마가 당신의 습관에 맞춰 자동 최적화하여 통증 발생을 줄여드릴게요.”
+          </p>
+        </div>
+        <div class="card">
+          <h2>Weekly Habit Report (웹 요약 카드)</h2>
+          <div class="quick-card">
+            <div>
+              <span>총 사용</span>
+              <strong>27h 12m</strong>
+            </div>
+            <div>
+              <span>클릭 수</span>
+              <strong>41,822</strong>
+            </div>
+            <div>
+              <span>통증 스코어</span>
+              <strong>68/100</strong>
+            </div>
+            <div>
+              <span>휴식 실행률</span>
+              <strong>32%</strong>
+            </div>
+          </div>
+          <p class="pill">추천 모드: AI 자동 감도 / 클릭 압력 보정</p>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
